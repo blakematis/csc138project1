@@ -21,6 +21,11 @@ while 1:
     message = ' '
     message = raw_input('input lowercase sentence:')
     
+    #if message is quit close the connection on client-side
+    if message == "quit":
+        print("closed connection")
+        break
+    
     #check if message equals 'quit' and then close the connection   
     #attach server name, port to message, then send into socket
     clientSocket.sendto(message,(serverName,serverPort))
@@ -32,7 +37,3 @@ while 1:
     print modifiedMessage
     clientSocket.close();
     
-    #if message is quit close the connection on client-side
-    if message == "quit":
-        print("closed connection")
-        break
