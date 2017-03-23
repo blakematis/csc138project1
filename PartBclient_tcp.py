@@ -34,7 +34,7 @@ while 1:
       clientSocket.send(message)
       sys.stdout.write('--> ')
       sys.stdout.flush() # flush the "To: "
-      if message == "Exit\n": #stdin.readline() also p8ick up enter
+      if message == "Exit\n": #stdin.readline() also pick up enter
         print "Connection end."
         sys.exit()     # for ready_toread etc...
         clientSocket.close()
