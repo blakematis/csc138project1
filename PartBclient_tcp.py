@@ -16,6 +16,7 @@ message = raw_input('Input lowercase sentence("Quit" to end): ')
 while (message != "Quit"):
   clientSocket.send(message)
   modifiedMessage = clientSocket.recv(1024)
+  modifiedMessage = modifiedMessage.upper()
   print 'From Server: ', modifiedMessage
   message = raw_input('Input lowercase sentence("Quit" to end): ')
 
