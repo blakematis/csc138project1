@@ -6,7 +6,7 @@ serverPort = 12000
 
 #Sock_STREAM for tcp socket
 serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(("", serverPort))
+serverSocket.bind(('', serverPort))
 
 #listen for tcp request
 serverSocket.listen(1)
