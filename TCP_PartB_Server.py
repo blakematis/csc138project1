@@ -20,7 +20,6 @@ socketList = []
 addrList = []
 
 #this is unused for now I have not implemented it like your program has Minh
-clientConnection = 0
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((HOST,SERVER_PORT))
 
@@ -40,21 +39,23 @@ def forwardMessage (serverSocket, sock, message):
                 try:
                     socket.send(message)
                 except:
-                    continue
+                    pass
                 
 while 1:
     ready_to_read, ready_to_write, in_error = select.select(socketList, [], [], 0)
     for sock in ready_to_read:
-        if sock == serverSocket:
+        if sock == serverSocket and clientConnection < 2:
             socketConnection, addr = serverSocket.accept()
             socketList.append(socketConnection)
             clientConnection = clientConnection + 1;
-            connectionMessage = "Client: "+ str(clientConnection) +" (%s, %s) is connected" %addr
-            sock.send(connectionMessage)
+            message =  "Client: "+ str(clientConnection) +" (%s, %s) is connected" %addr
+            print message
+            forwardMessage(serverSocket, sock, message)
         try:
             # attempt to recieve message from client
             message = sock.recv(1024)
-            if message: 
+            if message:
+                
                 forwardMessage(serverSocket, sock, message)
         except:
-            continue
+            pass
