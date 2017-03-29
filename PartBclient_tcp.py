@@ -11,7 +11,7 @@ clientSocket = socket(AF_INET, SOCK_STREAM)
 # connect has (( because it can take more than 1 parameter
 clientSocket.connect((serverName, serverPort))
 
-message = raw_input('Input lowercase sentence("Quit" to end): ')
+
 
 while 1:
 
@@ -21,6 +21,7 @@ while 1:
          print 'From Server: '+ message
    except:
       pass
+   message = raw_input('Input lowercase sentence("Quit" to end): ')
    clientSocket.send(message)
    modifiedMessage = clientSocket.recv(1024)
    message = modifiedMessage.upper()
