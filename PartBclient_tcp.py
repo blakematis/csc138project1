@@ -13,14 +13,19 @@ clientSocket.connect((serverName, serverPort))
 
 message = raw_input('Input lowercase sentence("Quit" to end): ')
 
-while (message != "Quit"):
-  clientSocket.send(message)
-  modifiedMessage = clientSocket.recv(1024)
-  message = modifiedMessage.upper()
-  clientSocket.send(message)
-  modifiedMessage = clientSocket.recv(1024)
-  print 'From Server: ', modifiedMessage
-  message = raw_input('Input lowercase sentence("Quit" to end): ')
+while 1:
+
+   try:
+      message.recv(1024)
+      if message:
+         print 'From Server: '+ message
+   except:
+      pass
+   clientSocket.send(message)
+   modifiedMessage = clientSocket.recv(1024)
+   message = modifiedMessage.upper()
+   clientSocket.send(message)
+
 
 clientSocket.send(message)
 print "  Connection end."
