@@ -40,14 +40,14 @@ while 1:
           if socket2 != serverSocket:
             if socket2 != socket1:
               socket2.send(message)
-              if message == "Exit\n": #stdin.readline() also take in \n
+              if message == "Quit\n": #stdin.readline() also take in \n
                 print "Client (%s, %s) is disconnected." %addrList[0]
                 socketList.remove(socket2)
                 print "Client (%s, %s) is disconnected." %addrList[1]
                 socketList.remove(socket1)
                 addrList = [] # empty list after removing
                 clientConnection = clientConnection - 2
-      elif clientConnection == 1 and message == "Exit\n":
+      elif clientConnection == 1 and message == "Quit\n":
         print "Client(%s, %s) is disconnected." %addr
         #socket1.close()
         socketList.remove(socket1)
